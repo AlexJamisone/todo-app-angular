@@ -1,0 +1,39 @@
+<main class="flex flex-col justify-center items-center gap-10">
+	<h1 class="text-6xl font-bold">ToDo App</h1>
+	<form (submit)="addTask()" class="flex gap-5">
+		<input
+			type="text"
+			[(ngModel)]="newTask"
+			name="newTask"
+			placeholder="Add new todo here"
+			class="p-3 border rounded-full focus:outline-teal-500"
+		/>
+		<button type="submit" class="bg-teal-200 rounded-full p-3">
+			Add Task
+		</button>
+	</form>
+	<div class="todo-app">
+		<ul class="task-list">
+			<li
+				*ngFor="let todo of todos"
+				[ngClass]="{ completed: todo.completed }"
+				class="flex gap-3 items-center mb-3"
+			>
+				<input
+					type="checkbox"
+					[checked]="todo.completed"
+					(change)="toggleComplete(todo)"
+				/>
+				<span [ngClass]="{ 'completed-text': todo.completed }">{{
+					todo.description
+				}}</span>
+				<button
+					(click)="deleteTask(todo)"
+					class="bg-red-400 px-3 rounded-full"
+				>
+					Delete
+				</button>
+			</li>
+		</ul>
+	</div>
+</main>
