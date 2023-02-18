@@ -1,16 +1,24 @@
 <main class="flex flex-col justify-center items-center gap-10">
 	<h1 class="text-6xl font-bold">ToDo App</h1>
-	<form (submit)="addTask()" class="flex gap-5">
+	<form (submit)="addTask()" class="flex gap-5 relative">
 		<input
 			type="text"
 			[(ngModel)]="newTask"
 			name="newTask"
 			placeholder="Add new todo here"
 			class="p-3 border rounded-full focus:outline-teal-500"
+			[ngClass]="{ 'border-red-400 focus:outline-red-400': isInputEmty }"
+			(input)="onInput()"
 		/>
 		<button type="submit" class="bg-teal-200 rounded-full p-3">
 			Add Task
 		</button>
+		<div
+			*ngIf="isInputEmty"
+			class="text-red-400 absolute -bottom-1/2 left-0"
+		>
+			Please enter a description
+		</div>
 	</form>
 	<div class="todo-app">
 		<ul class="task-list">

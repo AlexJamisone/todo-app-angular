@@ -12,6 +12,7 @@ export class TodoComponent implements OnInit {
 
 	todos: Todo[] = [];
 	newTask: string = "";
+	isInputEmty: boolean = false
 
 	ngOnInit(): void {
 		this.todos = this.todoService.getTodos();
@@ -28,6 +29,11 @@ export class TodoComponent implements OnInit {
 	}
 
 	addTask() {
+		if(this.newTask.trim() === '') {
+			this.isInputEmty = true
+			return
+		}
+		this.isInputEmty = false
 		const newTask: Todo = {
 			id: this.todos.length + 1,
 			description: this.newTask,
@@ -36,5 +42,9 @@ export class TodoComponent implements OnInit {
 		this.todos.push(newTask);
 		this.todoService.saveTodos(this.todos);
 		this.newTask = "";
+	}
+
+	onInput() {
+		this.isInputEmty = false
 	}
 }
