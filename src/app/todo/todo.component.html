@@ -1,19 +1,20 @@
-<main class="flex flex-col justify-center items-center gap-10">
+<main class="flex flex-col justify-center items-center gap-10 w-full">
 	<h1 class="text-6xl font-bold">ToDo App</h1>
-	<form (submit)="addTask()" class="flex gap-5 relative">
-		<input
-			type="text"
+	<form class="b-form flex gap-5 relative" (submit)="addTask()">
+		<tui-input
+			class="w-72"
+			[required]="true"
+			(ngModelChange)="onInput()"
 			[(ngModel)]="newTask"
-			name="newTask"
-			[placeholder]="editingTodo ? 'Edit todo' : 'Add new todo here'"
-			class="p-3 border rounded-full focus:outline-teal-500"
 			[ngClass]="{ 'border-red-400 focus:outline-red-400': isInputEmty }"
-			(input)="onInput()"
-		/>
-		<button type="submit" class="bg-teal-200 rounded-full p-3">
+			name="newTask"
+			type="text"
+		>
+			{{ editingTodo ? "Edit todo" : "Add new todo" }}
+		</tui-input>
+		<button tuiButton type="submit">
 			{{ editingTodo ? "Save ✔" : "Add Task" }}
 		</button>
-
 		<div
 			*ngIf="isInputEmty"
 			class="text-red-400 absolute -bottom-1/2 left-0"
