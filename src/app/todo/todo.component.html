@@ -5,14 +5,15 @@
 			type="text"
 			[(ngModel)]="newTask"
 			name="newTask"
-			placeholder="Add new todo here"
+			[placeholder]="editingTodo ? 'Edit todo' : 'Add new todo here'"
 			class="p-3 border rounded-full focus:outline-teal-500"
 			[ngClass]="{ 'border-red-400 focus:outline-red-400': isInputEmty }"
 			(input)="onInput()"
 		/>
 		<button type="submit" class="bg-teal-200 rounded-full p-3">
-			Add Task
+			{{ editingTodo ? "Save ✔" : "Add Task" }}
 		</button>
+
 		<div
 			*ngIf="isInputEmty"
 			class="text-red-400 absolute -bottom-1/2 left-0"
@@ -40,6 +41,13 @@
 					class="bg-red-400 px-3 rounded-full"
 				>
 					Delete
+				</button>
+				<button
+					(click)="editTask(todo)"
+					[disabled]="todo.completed"
+					class="bg-teal-500 px-3 rounded-full disabled:bg-slate-500"
+				>
+					Edit
 				</button>
 			</li>
 		</ul>
