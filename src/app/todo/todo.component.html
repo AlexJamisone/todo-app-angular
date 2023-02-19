@@ -24,33 +24,14 @@
 	</form>
 	<div class="todo-app">
 		<ul class="task-list">
-			<li
+			<app-todo-list
 				*ngFor="let todo of todos"
-				[ngClass]="{ completed: todo.completed }"
-				class="flex gap-3 items-center mb-3"
+				[todo]="todo"
+				(deleteTask)="deleteTask(todo)"
+				(editTask)="editTask(todo)"
+				(toggleComplete)="toggleComplete(todo)"
 			>
-				<input
-					type="checkbox"
-					[checked]="todo.completed"
-					(change)="toggleComplete(todo)"
-				/>
-				<span [ngClass]="{ 'completed-text': todo.completed }">{{
-					todo.description
-				}}</span>
-				<button
-					(click)="deleteTask(todo)"
-					class="bg-red-400 px-3 rounded-full"
-				>
-					Delete
-				</button>
-				<button
-					(click)="editTask(todo)"
-					[disabled]="todo.completed"
-					class="bg-teal-500 px-3 rounded-full disabled:bg-slate-500"
-				>
-					Edit
-				</button>
-			</li>
+			</app-todo-list>
 		</ul>
 	</div>
 </main>

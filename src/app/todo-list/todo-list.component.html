@@ -1,0 +1,23 @@
+<li
+	[ngClass]="{ completed: todo.completed }"
+	class="flex gap-3 items-center mb-3"
+>
+	<input
+		type="checkbox"
+		[checked]="todo.completed"
+		(change)="onToggleCompleat()"
+	/>
+	<span [ngClass]="{ 'completed-text': todo.completed }">{{
+		todo.description
+	}}</span>
+	<button (click)="onDeleteTask()" class="bg-red-400 px-3 rounded-full">
+		Delete
+	</button>
+	<button
+		(click)="onEditTask()"
+		[disabled]="todo.completed"
+		class="bg-teal-500 px-3 rounded-full disabled:bg-slate-500"
+	>
+		Edit
+	</button>
+</li>

@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { Todo } from "./todo";
 import { TodoService } from "../service/todo.service";
 import { ChangeDetectionStrategy } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
 @Component({
 	selector: "app-todo",
 	templateUrl: "./todo.component.html",
